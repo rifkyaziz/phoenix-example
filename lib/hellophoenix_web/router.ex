@@ -20,7 +20,17 @@ defmodule HellophoenixWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", HellophoenixWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", HellophoenixWeb do
+    pipe_through :api
+
+    scope("/v1") do
+
+      scope("/users") do
+	get("/", UsersController, :index)
+	get("/:id", UsersController, :show)
+      end
+      
+    end
+    
+   end
 end
